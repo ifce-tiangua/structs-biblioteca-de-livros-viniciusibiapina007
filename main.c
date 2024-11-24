@@ -29,8 +29,9 @@ int main(){
         printf("Sem livros");
         
     }
-    else{
-        pLivro prateleira = livro_alloc(q_livros);
+    else{       // se não for 0, iniciaremos o processo de alocação e leitura
+        
+        pLivro prateleira = livro_alloc(q_livros); // a variável "prateleira" será o nosso vetor dinâmico para as estruturas "Livro"
     
         for(int i =0; i<q_livros; i++){
             int n;
@@ -55,7 +56,8 @@ pLivro livro_alloc(int qtde){
 void livro_ler(pLivro livros, int qtde){
     
     for(int i = 0; i < qtde; i++){
-        
+
+        //devido ao fato de o nome dos livros terem espaço, não podemos usar "scanf", então usamos "fgets"
         fgets(livros[i].nome, sizeof(livros[i].nome), stdin);
         livros[i].nome[strcspn(livros[i].nome, "\n")] = '\0'; 
         
@@ -78,7 +80,7 @@ void livro_exibe(pLivro livros, int qtde){
     
     for(int i = 0; i < qtde; i++){
         
-        printf("Livro %d:\n", i+1);
+        printf("Livro %d:\n", i+1); // como o laço for começa em 0 , temos que somar +1 na hora de exibir
         printf("Nome: %s\n", livros[i].nome);
         printf("ISBN: %s\n", livros[i].isbn);
         printf("Preço: R$ %.2f\n", livros[i].preco);
